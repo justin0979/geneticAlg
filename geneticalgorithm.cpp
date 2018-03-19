@@ -261,44 +261,43 @@ void GA::setInitialPop() {
 	Function to cycle through the template of the genetic algorithm.
 */
 void GA::gaWorkHorse(const int& j, const int& i, int& counter, float* Pco) {
-			while(!match) // loop is the "work-horse" of the genetic algorithm.
-			{	
-				iteration++;
-				fillChromosomeRouletteVector(); // creates percentage of any distinct chromosome to
-												// be picked in replication/co.
-				selectAndStoreReplication(Pco[j]);
+	while(!match) // loop is the "work-horse" of the genetic algorithm.
+	{	
+		iteration++;
+		fillChromosomeRouletteVector(); // creates percentage of any distinct chromosome to
+										// be picked in replication/co.
+		selectAndStoreReplication(Pco[j]);
 
-				recombination(Pco[j]); // stores the recombinant chromosomes.
-				targetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
-				chromosomeRoulette.clear(); // empties vector for next recombinant iteration, so 
-											// new data is NOT added to old.
-				if(i == 0) // condition verifies stored data and printed fitness values come from 
-						   // the 1st of 20 runs only.
-				{
-					if(counter < 2)
-					{
-						fillFourGen(counter);
-					}
-					if(counter > 1)
-					{
-						if(counter % 2 == 0)
-						{
-							fillFourGen(2);
-						}
-						else
-						{
-							fillFourGen(3);
-						}
-					}
-					if(j==0 || j==4) // condition ensures that only one run will execute for 
-									 // both Pco 0.7 and 0.0.
-					{
-						printFitness();
-					}
-				}	
-				counter++;
+		recombination(Pco[j]); // stores the recombinant chromosomes.
+		targetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
+		chromosomeRoulette.clear(); // empties vector for next recombinant iteration, so 
+									// new data is NOT added to old.
+		if(i == 0) // condition verifies stored data and printed fitness values come from 
+				   // the 1st of 20 runs only.
+		{
+			if(counter < 2)
+			{
+				fillFourGen(counter);
 			}
-
+			if(counter > 1)
+			{
+				if(counter % 2 == 0)
+				{
+					fillFourGen(2);
+				}
+				else
+				{
+					fillFourGen(3);
+				}
+			}
+			if(j==0 || j==4) // condition ensures that only one run will execute for 
+							 // both Pco 0.7 and 0.0.
+			{
+				printFitness();
+			}
+		}	
+		counter++;
+	}
 }
 
 /***************************setPop()*******************************

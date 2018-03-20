@@ -11,5 +11,5 @@ just one "gene" in the 20 "chromosome" population, the Pco 0.0 run would never s
 will run until at least one chromosome matches the target by displaying the fitness value of 10.
 
 Program will display the initial generated population and all iterations up to the target value,
-followed by the 2nd and 3rd iteerations and then the second to last and last iterations for 
+followed by the 2nd and 3rd iterations and then the second to last and last iterations for 
 Pco's 0.7 and 0.0.

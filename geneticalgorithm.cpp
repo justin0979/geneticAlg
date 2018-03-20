@@ -63,8 +63,7 @@ public:
 	// Postcondition:  Returns targetCounter.
 	int getIteration(){return targetIteration;};
 	// Function to return targetIteration, which records the number of generations it took to find 
-	// the 
-	// target chromosome.
+	// the target chromosome.
 	// Postcondition:  Returns targetIteration.
 	
 	// VARIABLES
@@ -106,8 +105,7 @@ private:
 	// Postcondition:  nextGenChromosomes will contain 1 - Pco replicated chromosomes.
 	void setFitness(int arr[20][11], const int&, const int&);  
 	// Function to compare each individual chromosome with the target chromosome and increment the 
-	// fitness value 
-	// of each gene match between the target and analyzed chromosomes.
+	// fitness value of each gene match between the target and analyzed chromosomes.
 	// Postcondition:  Index 0 of population arrays (pop, nextGenChromosomes) will be updated with 
 	// chromosome fitness value.
 	void fillCopyChromosomeList(int original[20][11], int copy[20][11]);
@@ -115,24 +113,22 @@ private:
 	void fillChromosomeRouletteVector();  
 	// Function to fill chromosomeRoulette array based on the fitness value of each chromosome.  
 	// i.e., Chromosome in index 1 has fitness value of 5, chromosomeRoulette's indices 0-4 will 
-	// store the int
-	// value of 1.  Chromosome in index 2 has fitness value of 2, chromosomeRoulette's indices 5-6 
-	// will store
-	// the int value 2; thus, the chromosomeRoulette contents from index 0 - 6 will 
-	// be:  1 1 1 1 1 2 2.
+	// store the int value of 1. Chromosome in index 2 has fitness value of 2, 
+	// chromosomeRoulette's indices 5-6 will store the int value 2; thus, the 
+	// chromosomeRoulette contents from index 0 - 6 will be:  1 1 1 1 1 2 2.
 	// Postcondition:  chromosomeRoulette vector is filled according to chromosome fitness values.
 	void recombination(const float&); 
 	// Function to randomly select chromosome pairs for cross-over.  
 	void crossOver(const int&);
 	// Function to conduct cross over of first half of first chromosome with back half of 
-	// second chromosome and vice 
-	// versa.  Children chromosomes are then stored in nextGenChromosomes array.
+	// second chromosome and vice versa.  Children chromosomes are then stored in 
+	// nextGenChromosomes array.
 	// Precondition:  2 parent chromosomes from "original" generation.
 	// Postcondition:  2 children chromosomes stored in nextGenChromosomes.
 	void mutation();
 	// Function to randomly select one chromosome from the newly generated nextGenChromosomes 
-	// array and within
-	// that chromosome, a gene is randomly selected to change from a 0 to a 1 or vice versa.
+	// array and within that chromosome, a gene is randomly selected to change from a 0 to a 1 
+	// or vice versa.
 	// Precondition:  Newly crossed over nextGenChromosomes.
 	// Postconditoin:  One chromosome with one "new" gene.
 	void printFitness();

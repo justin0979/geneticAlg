@@ -13,3 +13,14 @@ will run until at least one chromosome matches the target by displaying the fitn
 Program will display the initial generated population and all iterations up to the target value,
 followed by the 2nd and 3rd iterations and then the second to last and last iterations for 
 Pco's 0.7 and 0.0.
+
+# Execute with Docker
+
+From linux command line:
+`docker build -t ga .`
+`sudo docker run ga`
+
+# Execute if GCC installed
+
+`gcc -o geneticAlgo geneticalgorithm.cpp -lstdc++`
+`./geneticAlgo`

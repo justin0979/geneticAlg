@@ -18,7 +18,7 @@ Pco's 0.7 and 0.0.
 
 From linux command line: <br />
 `docker build -t ga .` <br />
-`sudo docker run ga`
+`docker run ga`
 
 # Execute if GCC installed
 

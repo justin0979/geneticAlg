@@ -16,7 +16,7 @@ Pco's 0.7 and 0.0.
 
 # Execute with Docker
 
-From linux command line:
+From linux command line: <br />
 `docker build -t ga .` <br />
 `sudo docker run ga`
 

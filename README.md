@@ -1,4 +1,4 @@
-# geneticAlg
+# Basic Numerical Demonstration of the Genetic Algorithm
 
 This program simulates the Genetic Algorithm's ability to progressively match the given target
 of 1010101010 from 20 randomly initialized "chromosomes" (represented by integers 0,1 arrays).

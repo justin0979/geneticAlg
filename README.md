@@ -18,10 +18,15 @@ Pco's 0.7 and 0.0.
 # Execute with Docker
 
 From linux command line: <br />
-`docker build -t ga .` <br />
-`docker run ga`
+
+```sh
+docker build -t ga .
+docker run ga
+```
 
 # Execute if GCC installed
 
-`gcc -o geneticAlgo geneticalgorithm.cpp -lstdc++` <br/>
-`./geneticAlgo`
+```sh
+gcc -o geneticAlgo geneticalgorithm.cpp -lstdc++
+./geneticAlgo
+```

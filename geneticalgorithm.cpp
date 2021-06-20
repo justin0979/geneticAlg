@@ -1,6 +1,6 @@
 // Program: Genetic Algorithm
 // Author: Justin Mangawang
-// Date: February 2017 (refactored March 2018)
+// Date: February 2017 
 
 /* Descripton: This program simulates the Genetic Algorithm's ability to progressively match the
 			   given target of 1010101010 from 20 randomly initialized chromosomes (represented

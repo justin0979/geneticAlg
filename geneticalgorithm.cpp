@@ -140,6 +140,8 @@ int main(int argc, char** argv)
 {
 	GA g;
 	srand(time(NULL));
+  std::cout << std::fixed;
+  std::cout << std::setprecision(1);
 	
 	g.geneticAlgorithm();
 	

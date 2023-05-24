@@ -30,3 +30,52 @@ docker run ga
 gcc -o geneticAlgo geneticalgorithm.cpp -lstdc++
 ./geneticAlgo
 ```
+
+<details>
+    <summary>Issues</summary>
+
+### Design
+
+This program lacks quality architecture. The geneticAlgorithm
+function does take on the qualities of the Template design pattern in how each
+function is ordered in such a way as to provide accurate data outputs. This program
+was designed and constructed prior to me having taken Software Engineering or Software
+Design courses. After refactoring one year later, I see odd arrangements with
+private and public categorizations; however, the arrangement worked with the
+sloppy design style.
+
+### BUG
+
+In the event that there are 4 or less iterations before the optimal solution is found,
+there will be excess generations produced on printout of the "The first generation
+after initial population"; "The second generation after the initial population";
+"The second to last generation"; "The last generation". E.g. if there are only 4
+iterations for any run, "The second to last generation" will contain the optimal
+fitness value of 10 chromosome and "The last generation" will contain an excess
+generation (which might and might not contain the optimal chromosome since that
+chromosome only has 10 spots in the chromosome roulette vector. A possible SOLUTION
+is to include the condition of 'if there are less than 5 generations, then fill the
+generations after the optimal solution generation with null input'.
+
+</details>
+
+<details>
+    <summary>Improvements</summary>
+
+Utilize separate files for better code comprehension. Implement
+helper classes for better code organization. Removal of unused functions for
+final product. Overall better naming practices will help in understanding what each
+variable and function does (e.g., I donw remember what `int endSpot = 0;` is doing).
+
+</details>
+
+<details>
+    <summary>Minor Note</summary>
+
+Only minor refactors were implemented after having completed this course. The
+overall state of this program is left for reference of how I developed this program
+during the class. I do plan on refactoring each function to be smaller (i.e., more
+legible) and to have better names, which will lead to the removal of the many comments
+littering the program.
+
+</details>

@@ -21,7 +21,7 @@ public:
 	// 19 more times for each Pco and finally calulate the average number of iterations it took
 	// to find the target chromosome.  The function is run 100 times (20 runs per Pco).
 	// Postcondition:  Average number of iteraions for each Pco is calculated.
-	void printPopulation(int arr[20][11]);  
+	void printInitialPopulation(int arr[20][11]);  
 	// Function to printout the specified population.
 	// Postcondition:  Prints population to screen.
 	int getTargetCounter() {return targetCounter;}; 
@@ -52,15 +52,15 @@ private:
 	void fillFourGen(const int& i);
 	// Function to store the array containing the first two generations after initial population
 	// and the last two generated generations.
-	void printFourGen();
+	void printFirstTwoAndLastTwoGenerations();
 	// Function to output the array containing the first two generations after the initial 
 	// population.
 	// and the last two generated generations.
 	// Postcondition:  prints crossed-over and mutated populations.
-	void popOrder(const int&);
-	// Function to assist printFourGen() by printing label for 2nd, 3rd, next to last and last 
+	void printPopulationsOrderLabel(const int&);
+	// Function to assist printFirstTwoAndLastTwoGenerations() by printing label for 2nd, 3rd, next to last and last 
 	// populations.
-	void printFourGenDecoration(const int&);
+	void printFirstTwoAndLastTwoGenerationsDecoration(const int&);
 	// Funtion prints out ".)" + data for the 2nd, 3rd, next to last and last populations.
 	void setPop(int arr[20][11]); 
 	// Function to randomly generate the 20 chromosome population.
@@ -106,6 +106,8 @@ private:
 	void printPcoAvg(float*);
 	// Function to calculate and print out to screen the average Pco after 20 runs.
   void printOnlyPcoSeventyOrZeroPercentLabel(float pco);
+  void printChromosomeLineNumber(int line);
+  void printChromosomeFitnessAndGenes(const int &i, const int &j);
 
 	// VARIABLES
 	int pop[popSize][chromSize];	// index 0 holds fitness value, indices 1 to 10 hold 0's or 
@@ -176,28 +178,28 @@ void GA::geneticAlgorithm()
 	float Pco[numOfPcos] = {0.7, 0.3, 0.5, 0.9, 0.0};
 	setInitialPop();
 	targetMatch(pop);
-	for(int pcoValueIndex = 0; pcoValueIndex < numOfPcos; pcoValueIndex++)
+	for(int pcoIndex = 0; pcoIndex < numOfPcos; pcoIndex++)
 	{
-    printOnlyPcoSeventyOrZeroPercentLabel(Pco[pcoValueIndex]);
+    printOnlyPcoSeventyOrZeroPercentLabel(Pco[pcoIndex]);
 
 		for(int i = 0; i < 20; i++)
 		{
-			gaWorkHorse(pcoValueIndex, i, Pco[pcoValueIndex]);
+			gaWorkHorse(pcoIndex, i, Pco[pcoIndex]);
 			targetIteration = iteration;
 			targetCounter++;
 			iteration = 1;
 			match = 0;
-			storeIteration[pcoValueIndex][i] = getIteration() + 1;
+			storeIteration[pcoIndex][i] = getIteration() + 1;
 			fillCopyChromosomeList(pop, copyChromosomeList);
 		}
 
-		if(Pco[pcoValueIndex]*10 == 7 || Pco[pcoValueIndex]*10 == 0)
+		if(Pco[pcoIndex]*10 == 7 || Pco[pcoIndex]*10 == 0)
 		{
 			if(end % 2 == 0 && end > 5)
 			{
 				swap();
 			}
-			printFourGen();
+			printFirstTwoAndLastTwoGenerations();
 		}
 	}
 	printPcoAvg(Pco);
@@ -205,7 +207,7 @@ void GA::geneticAlgorithm()
 
 void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) {
   if(pco*10 == 7 || pco*10 == 0) {
-			std::cout << "\nPco = " << pco << "\tF(i) of 20 chromosomes"<< std::endl;
+			std::cout << "\nPco = " << pco << "\t" <<  "F(i) of 20 chromosomes"<< std::endl;
   }
   return;
 }
@@ -217,7 +219,7 @@ void GA::setInitialPop() {
 	std::cout << "Initial Population.\n" << std::endl;
 	std::cout << " i\tF(i)\tChromosome data" << "\n----\t----\t-------------------" << std::endl;
 	setPop(pop); // stores original generated pop and saves it in pop array.
-	printPopulation(pop); // display chromosomes. 
+	printInitialPopulation(pop); // display chromosomes. 
 
 }
 
@@ -286,10 +288,10 @@ void GA::setPop(int arr[popSize][chromSize])
 	fillCopyChromosomeList(arr, copyChromosomeList);
 }
 
-/***************************printPopulation()******************************
+/***************************printInitialPopulation()******************************
 	Function to print out a population.
 */
-void GA::printPopulation(int arr[popSize][chromSize])
+void GA::printInitialPopulation(int arr[popSize][chromSize])
 {
 	for(int i = 0; i < popSize; i++)
 	{
@@ -555,35 +557,35 @@ void GA::fillFourGen(const int& i)
 	}
 }
 
-/*********************************printFourGen()*************************************************
+/*********************************printFirstTwoAndLastTwoGenerations()*************************************************
 	Function to output the first two generations after initial pop and the last two generations 
 	generated.
 */
-void GA::printFourGen()
+void GA::printFirstTwoAndLastTwoGenerations()
 {
 	std::cout << std::endl;
 	if(end < 4)
 	{
 		for(int i = 0; i < (end - 1); i++)
 		{
-			popOrder(i);
-			printFourGenDecoration(i);
+			printPopulationsOrderLabel(i);
+			printFirstTwoAndLastTwoGenerationsDecoration(i);
 		}
 	}	
 	else
 	{
 		for(int i = 0; i < 4; i++)
 		{
-			popOrder(i);
-			printFourGenDecoration(i);
-		}// close for
-	}// end else
+			printPopulationsOrderLabel(i);
+			printFirstTwoAndLastTwoGenerationsDecoration(i);
+		}
+	}
 }
 
-/********************************************************popOrder()*****************************
+/**********************************************printPopulationsOrderLabel()*****************************
 	Fuction printouts out the order of 2nd, 3rd and next to last and last pop listing.
 */
-void GA::popOrder(const int& i) {
+void GA::printPopulationsOrderLabel(const int& i) {
 		
 	if(i < 2)
 	{
@@ -609,24 +611,33 @@ void GA::popOrder(const int& i) {
 	}	
 }
 
-/********************************************************printFourGenDecoration()*****************************
+/**********************************************printFirstTwoAndLastTwoGenerationsDecoration()*****************************
 	Function adds ".)" + data to printout.
 */
-void GA::printFourGenDecoration(const int& i) {
+void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i) {
 	for(int j = 0; j < popSize; j++)
 	{
-		std::cout << j + 1 << ".)\t";
-		for(int k = 0; k < chromSize; k++)
-		{
-			std::cout << fourGen[i][j][k] << " ";
-			if(k == 0)
-			{
-				std::cout << '\t';	
-			}
-		}// clost nested nested for
+    printChromosomeLineNumber(j + 1);
+    printChromosomeFitnessAndGenes(i,j);
+
 		std::cout << std::endl;
-	}// close nested for
+	}
 	std::cout << std::endl;
+}
+
+void GA::printChromosomeLineNumber(int lineNumber) {
+  std::cout << lineNumber << ".)\t";
+}
+
+void GA::printChromosomeFitnessAndGenes(const int &i, const int &j) {
+  for(int k = 0; k < chromSize; k++)
+  {
+		std::cout << fourGen[i][j][k] << " ";
+		if(k == 0)
+		{
+			std::cout << '\t';	
+		}
+  }
 }
 
 /********************************************************swap()*****************************

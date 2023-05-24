@@ -37,7 +37,7 @@ public:
 	static const int chromSize = 11; // 0 will hold fitness value, 1 to 10 will hold chromosome
 									 // data.
 private:
-	void gaWorkHorse(const int&, const int&, int&, float*);
+	void gaWorkHorse(const int&, const int&, const float);
 	// Function to conduct the main work of the genetic algorithm.
 	void setInitialPop();
 	// Function to randomly set the initial population for the genetic algorithm.
@@ -172,36 +172,32 @@ GA::GA()
 */
 void GA::geneticAlgorithm()
 {
-	int endSpot = 0;
   const int numOfPcos = 5;
 	float Pco[numOfPcos] = {0.7, 0.3, 0.5, 0.9, 0.0};
-	int counter = 0; // to "tell" which index stores the 1st two and last 2 generations.
 	setInitialPop();
 	targetMatch(pop);
-	for(int j = 0; j < numOfPcos; j++)
+	for(int pcoValueIndex = 0; pcoValueIndex < numOfPcos; pcoValueIndex++)
 	{
-    printOnlyPcoSeventyOrZeroPercentLabel(Pco[j]);
+    printOnlyPcoSeventyOrZeroPercentLabel(Pco[pcoValueIndex]);
 
 		for(int i = 0; i < 20; i++)
 		{
-			gaWorkHorse(j, i, counter, Pco);
+			gaWorkHorse(pcoValueIndex, i, Pco[pcoValueIndex]);
 			targetIteration = iteration;
 			targetCounter++;
 			iteration = 1;
 			match = 0;
-			storeIteration[j][i] = getIteration() + 1;
+			storeIteration[pcoValueIndex][i] = getIteration() + 1;
 			fillCopyChromosomeList(pop, copyChromosomeList);
-			
-			counter = 0;
 		}
-		if(j == 0 || j == 4)
+
+		if(Pco[pcoValueIndex]*10 == 7 || Pco[pcoValueIndex]*10 == 0)
 		{
 			if(end % 2 == 0 && end > 5)
 			{
 				swap();
 			}
 			printFourGen();
-			endSpot = 0;
 		}
 	}
 	printPcoAvg(Pco);
@@ -209,7 +205,7 @@ void GA::geneticAlgorithm()
 
 void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) {
   if(pco*10 == 7 || pco*10 == 0) {
-			std::cout << "\nPco = " << pco << std::endl;
+			std::cout << "\nPco = " << pco << "\tF(i) of 20 chromosomes"<< std::endl;
   }
   return;
 }
@@ -228,15 +224,17 @@ void GA::setInitialPop() {
 /**************************gaWorkHorse()**************************
 	Function to cycle through the template of the genetic algorithm.
 */
-void GA::gaWorkHorse(const int& j, const int& i, int& counter, float* Pco) {
+void GA::gaWorkHorse(const int& j, const int& i, const float Pco) {
+	int counter = 0; // track which index stores the 1st two and last 2 generations.
+
 	while(!match) // loop is the "work-horse" of the genetic algorithm.
 	{	
 		iteration++;
 		fillChromosomeRouletteVector(); // creates percentage of any distinct chromosome to
 										// be picked in replication/co.
-		selectAndStoreReplication(Pco[j]);
+		selectAndStoreReplication(Pco);
 
-		recombination(Pco[j]); // stores the recombinant chromosomes.
+		recombination(Pco); // stores the recombinant chromosomes.
 		targetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
 		chromosomeRoulette.clear(); // empties vector for next recombinant iteration, so 
 									// new data is NOT added to old.

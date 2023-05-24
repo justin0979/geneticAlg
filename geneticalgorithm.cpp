@@ -107,6 +107,7 @@ private:
 	// Function to calculate and print out to screen the average Pco after 20 runs.
   void printOnlyPcoSeventyOrZeroPercentLabel(float pco);
   void printChromosomeLineNumber(int line);
+  void printChromosomeFitnessAndGenes(int *arr);
   void printChromosomeFitnessAndGenes(const int &i, const int &j);
 
 	// VARIABLES
@@ -297,18 +298,11 @@ void GA::printInitialPopulation(int arr[popSize][chromSize])
 {
 	for(int i = 0; i < popSize; i++)
 	{
-		std::cout << i + 1 << ".)\t";
-		
-		for(int j = 0; j < chromSize; j++)
-		{
-			std::cout << arr[i][j] << " ";
-			if(j == 0)
-			{
-				std::cout << "\t";
-			}
-		}
+    printChromosomeLineNumber(i + 1);
+		printChromosomeFitnessAndGenes(arr[i]);
 		std::cout << std::endl;
 	}
+  std::cout << std::endl;
 }
 
 /***************************setFitness()******************************
@@ -629,6 +623,17 @@ void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i) {
 
 void GA::printChromosomeLineNumber(int lineNumber) {
   std::cout << lineNumber << ".)\t";
+}
+
+void GA::printChromosomeFitnessAndGenes(int *arr) {
+	for(int j = 0; j < chromSize; j++)
+	{
+		std::cout << arr[j] << " ";
+		if(j == 0)
+		{
+			std::cout << "\t";
+		}
+	}
 }
 
 void GA::printChromosomeFitnessAndGenes(const int &i, const int &j) {

@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <vector>
 #include <time.h>
+#include <typeinfo>
 
 class GA
 {
@@ -104,6 +105,7 @@ private:
 	// Postcondition:  if match found, return 1, else 0.
 	void printPcoAvg(float*);
 	// Function to calculate and print out to screen the average Pco after 20 runs.
+  void printOnlyPcoSeventyOrZeroPercentLabel(float pco);
 
 	// VARIABLES
 	int pop[popSize][chromSize];	// index 0 holds fitness value, indices 1 to 10 hold 0's or 
@@ -171,16 +173,14 @@ GA::GA()
 void GA::geneticAlgorithm()
 {
 	int endSpot = 0;
-	float Pco[5] = {0.7, 0.3, 0.5, 0.9, 0.0};
+  const int numOfPcos = 5;
+	float Pco[numOfPcos] = {0.7, 0.3, 0.5, 0.9, 0.0};
 	int counter = 0; // to "tell" which index stores the 1st two and last 2 generations.
 	setInitialPop();
 	targetMatch(pop);
-	for(int j = 0; j < 5; j++)
+	for(int j = 0; j < numOfPcos; j++)
 	{
-		if(j == 0 || j == 4)
-		{
-			std::cout << "\nPco = " << Pco[j] << std::endl;
-		}
+    printOnlyPcoSeventyOrZeroPercentLabel(Pco[j]);
 
 		for(int i = 0; i < 20; i++)
 		{
@@ -205,6 +205,13 @@ void GA::geneticAlgorithm()
 		}
 	}
 	printPcoAvg(Pco);
+}
+
+void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) {
+  if(pco*10 == 7 || pco*10 == 0) {
+			std::cout << "\nPco = " << pco << std::endl;
+  }
+  return;
 }
 
 /**************************setInitialPop()*************************

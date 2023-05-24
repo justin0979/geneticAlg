@@ -15,7 +15,7 @@ Program will display the initial generated population and all iterations up to t
 followed by the 2nd and 3rd iterations and then the second to last and last iterations for
 Pco's 0.7 and 0.0.
 
-# Execute with Docker
+## Execute with Docker
 
 From linux command line: <br />
 
@@ -24,7 +24,7 @@ docker build -t ga .
 docker run ga
 ```
 
-# Execute if GCC installed
+## Execute if GCC installed
 
 ```sh
 gcc -o geneticAlgo geneticalgorithm.cpp -lstdc++
@@ -32,9 +32,9 @@ gcc -o geneticAlgo geneticalgorithm.cpp -lstdc++
 ```
 
 <details>
-    <summary>Issues</summary>
+    <summary><strong>Issues</strong></summary>
 
-### Design
+#### Design
 
 This program lacks quality architecture. The geneticAlgorithm
 function does take on the qualities of the Template design pattern in how each
@@ -44,7 +44,7 @@ Design courses. After refactoring one year later, I see odd arrangements with
 private and public categorizations; however, the arrangement worked with the
 sloppy design style.
 
-### BUG
+#### BUG
 
 In the event that there are 4 or less iterations before the optimal solution is found,
 there will be excess generations produced on printout of the "The first generation
@@ -60,7 +60,7 @@ generations after the optimal solution generation with null input'.
 </details>
 
 <details>
-    <summary>Improvements</summary>
+    <summary><strong>Improvements</strong></summary>
 
 Utilize separate files for better code comprehension. Implement
 helper classes for better code organization. Removal of unused functions for
@@ -70,7 +70,7 @@ variable and function does (e.g., I donw remember what `int endSpot = 0;` is doi
 </details>
 
 <details>
-    <summary>Minor Note</summary>
+    <summary><strong>Minor Note</strong></summary>
 
 Only minor refactors were implemented after having completed this course. The
 overall state of this program is left for reference of how I developed this program

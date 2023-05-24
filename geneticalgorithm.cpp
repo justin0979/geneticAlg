@@ -21,7 +21,7 @@ public:
 	// 19 more times for each Pco and finally calulate the average number of iterations it took
 	// to find the target chromosome.  The function is run 100 times (20 runs per Pco).
 	// Postcondition:  Average number of iteraions for each Pco is calculated.
-	void printInitialPopulation(int arr[20][11]);  
+	void printPopulation(int arr[20][11]);  
 	// Function to printout the specified population.
 	// Postcondition:  Prints population to screen.
 	int getTargetCounter() {return targetCounter;}; 
@@ -222,7 +222,7 @@ void GA::setInitialPop() {
 	std::cout << "Initial Population.\n" << std::endl;
 	std::cout << " i\tF(i)\tChromosome data" << "\n----\t----\t-------------------" << std::endl;
 	setPop(pop); // stores original generated pop and saves it in pop array.
-	printInitialPopulation(pop); // display chromosomes. 
+	printPopulation(pop); // display chromosomes. 
 
 }
 
@@ -291,10 +291,10 @@ void GA::setPop(int arr[popSize][chromSize])
 	fillCopyChromosomeList(arr, copyChromosomeList);
 }
 
-/***************************printInitialPopulation()******************************
+/***************************printPopulation()******************************
 	Function to print out a population.
 */
-void GA::printInitialPopulation(int arr[popSize][chromSize])
+void GA::printPopulation(int arr[popSize][chromSize])
 {
 	for(int i = 0; i < popSize; i++)
 	{
@@ -614,7 +614,7 @@ void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i) {
 	for(int j = 0; j < popSize; j++)
 	{
     printChromosomeLineNumber(j + 1);
-    printChromosomeFitnessAndGenes(i,j);
+    printChromosomeFitnessAndGenes(fourGen[i][j]);
 
 		std::cout << std::endl;
 	}

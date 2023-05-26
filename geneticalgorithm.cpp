@@ -230,18 +230,20 @@ void GA::setInitialPop() {
 
 /**************************gaWorkHorse()**************************
 	Function to cycle through the template of the genetic algorithm.
+
+  TODO: check validity of interationOf20Runs name
 */
-void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const float Pco) {
+void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const float pcoValue) {
 	int generationCounter = 0; 
 
-	while(!match) // loop is the "work-horse" of the genetic algorithm.
+	while(!match) 
 	{	
 		iteration++;
 		fillChromosomeRouletteVector(); // creates percentage of any distinct chromosome to
 										// be picked in replication/co.
-		selectAndStoreReplication(Pco);
+		selectAndStoreReplication(pcoValue);
 
-		recombination(Pco); // stores the recombinant chromosomes.
+		recombination(pcoValue); // stores the recombinant chromosomes.
 		targetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
 		chromosomeRoulette.clear(); // empties vector for next recombinant iteration, so 
 									// new data is NOT added to old.

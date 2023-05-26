@@ -179,8 +179,10 @@ void GA::geneticAlgorithm()
 {
   const int numOfPcos = 5;
 	float Pco[numOfPcos] = {0.7, 0.3, 0.5, 0.9, 0.0};
+
 	setInitialPop();
 	targetMatch(pop);
+
 	for(int pcoIndex = 0; pcoIndex < numOfPcos; pcoIndex++)
 	{
     printOnlyPcoSeventyOrZeroPercentLabel(Pco[pcoIndex]);
@@ -220,7 +222,7 @@ void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) {
 */
 void GA::setInitialPop() {
 	std::cout << "Initial Population.\n" << std::endl;
-	std::cout << " i\tF(i)\tChromosome data" << "\n----\t----\t-------------------" << std::endl;
+	std::cout << " i\tF(i)\tChromosome data (genes)" << "\n----\t----\t-------------------" << std::endl;
 	setPop(pop); // stores original generated pop and saves it in pop array.
 	printPopulation(pop); // display chromosomes. 
 
@@ -229,7 +231,7 @@ void GA::setInitialPop() {
 /**************************gaWorkHorse()**************************
 	Function to cycle through the template of the genetic algorithm.
 */
-void GA::gaWorkHorse(const int& j, const int& i, const float Pco) {
+void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const float Pco) {
 	int counter = 0; // track which index stores the 1st two and last 2 generations.
 
 	while(!match) // loop is the "work-horse" of the genetic algorithm.
@@ -243,7 +245,7 @@ void GA::gaWorkHorse(const int& j, const int& i, const float Pco) {
 		targetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
 		chromosomeRoulette.clear(); // empties vector for next recombinant iteration, so 
 									// new data is NOT added to old.
-		if(i == 0) // condition verifies stored data and printed fitness values come from 
+		if(iterationOf20Runs == 0) // condition verifies stored data and printed fitness values come from 
 				   // the 1st of 20 runs only.
 		{
 			if(counter < 2)
@@ -261,7 +263,7 @@ void GA::gaWorkHorse(const int& j, const int& i, const float Pco) {
 					fillFourGen(3);
 				}
 			}
-			if(j==0 || j==4) // condition ensures that only one run will execute for 
+			if(pcoIndex == 0 || pcoIndex == 4) // condition ensures that only one run will execute for 
 							 // both Pco 0.7 and 0.0.
 			{
 				printFitness();

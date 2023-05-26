@@ -232,7 +232,7 @@ void GA::setInitialPop() {
 	Function to cycle through the template of the genetic algorithm.
 */
 void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const float Pco) {
-	int counter = 0; // track which index stores the 1st two and last 2 generations.
+	int generationCounter = 0; 
 
 	while(!match) // loop is the "work-horse" of the genetic algorithm.
 	{	
@@ -245,16 +245,16 @@ void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const fl
 		targetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
 		chromosomeRoulette.clear(); // empties vector for next recombinant iteration, so 
 									// new data is NOT added to old.
-		if(iterationOf20Runs == 0) // condition verifies stored data and printed fitness values come from 
-				   // the 1st of 20 runs only.
+		if(iterationOf20Runs == 0) // condition verifies stored data and printed fitness
+                               // values come from the 1st of 20 runs only.
 		{
-			if(counter < 2)
+			if(generationCounter < 2)
 			{
-				fillFourGen(counter);
+				fillFourGen(generationCounter);
 			}
-			if(counter > 1)
+			if(generationCounter > 1)
 			{
-				if(counter % 2 == 0)
+				if(generationCounter % 2 == 0)
 				{
 					fillFourGen(2);
 				}
@@ -269,7 +269,7 @@ void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const fl
 				printFitness();
 			}
 		}	
-		counter++;
+		generationCounter++;
 	}
 }
 

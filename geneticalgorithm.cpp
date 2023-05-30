@@ -27,8 +27,7 @@ public:
 private:
 	void gaWorkHorse(const int&, const int&, const float);
 	// Function to conduct the main work of the genetic algorithm.
-	void setInitialPop();
-	// Function to randomly set the initial population for the genetic algorithm.
+	void fillInitialPop();
 	void filler();
 	// Function NOT USED, but if too few iterations occur, the remaining populations in fourGen are
 	// filled with -1.
@@ -166,7 +165,7 @@ void GA::geneticAlgorithm()
   const int numOfPcos = 5;
 	float Pco[numOfPcos] = {0.7, 0.3, 0.5, 0.9, 0.0};
 
-	setInitialPop();
+	fillInitialPop();
 	targetMatch(pop);
 
 	for(int pcoIndex = 0; pcoIndex < numOfPcos; pcoIndex++)
@@ -204,10 +203,10 @@ void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco)
   return;
 }
 
-/**************************setInitialPop()*************************
+/**************************fillInitialPop()*************************
 	Function to randomly select each "gene" in each "chromosome in the population.
 */
-void GA::setInitialPop() 
+void GA::fillInitialPop() 
 {
 	std::cout << "Initial Population.\n" << std::endl;
 	std::cout << " i\tF(i)\tChromosome data (genes)" << "\n----\t----\t-------------------" << std::endl;

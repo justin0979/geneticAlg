@@ -614,12 +614,12 @@ void GA::printPopulationsOrderLabel(const int& generation)
 /**********************************************printFirstTwoAndLastTwoGenerationsDecoration()*****************************
 	Function adds ".)" + data to printout.
 */
-void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i) 
+void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& generation) 
 {
-	for(int j = 0; j < popSize; j++)
+	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
-    printChromosomeLineNumber(j + 1);
-    printChromosomeFitnessAndGenes(fourGen[i][j]);
+    printChromosomeLineNumber(chromosome + 1);
+    printChromosomeFitnessAndGenes(fourGen[generation][chromosome]);
 
 		std::cout << std::endl;
 	}

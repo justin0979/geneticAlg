@@ -218,23 +218,40 @@ void GA::setInitialPop()
 }
 
 /***************************setPop()*******************************
-	Function to randomly generate 20 "new chromosomes".
+	Function to randomly generate 20 "new chromosomes" with genes containing 0 or 1.
 */
 void GA::setPop(int arr[popSize][chromSize])
 {
 	int randNum;
 
-	for(int i = 0; i < popSize; i++)
+	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
-		for(int j = 1; j < chromSize; j++)
+		for(int gene = 1; gene < chromSize; gene++)
 		{
 			randNum = rand() % 2;
-			arr[i][j] = randNum;
-			setFitness(arr, i, j); // line 111
+			arr[chromosome][gene] = randNum;
+			setFitness(arr, chromosome, gene);
 		}
 		fitness = 0;
 	}
 	fillCopyChromosomeList(arr, copyChromosomeList);
+}
+
+/***************************setFitness()******************************
+	Function compares value in each index of pop array "chromosomes"
+	to target "chromosome".  Where there is a match => fitness increments.
+*/
+void GA::setFitness(int arr[popSize][chromSize], const int& chromosome, const int& gene)
+{
+	if(gene%2 == 0 && arr[chromosome][gene] == 0) // Checks if even gene contains 0.
+	{
+		fitness++;
+	}
+	if(gene%2 != 0 && arr[chromosome][gene] == 1) // Checks if odd gene contains 1.
+	{
+		fitness++;
+	}
+	arr[chromosome][0] = fitness; // index 0 of each chromosome contains its fitness value.
 }
 
 /***************************printPopulation()******************************
@@ -328,23 +345,6 @@ void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const fl
 		}	
 		generationCounter++;
 	}
-}
-
-/***************************setFitness()******************************
-	Function compares value in each index of pop array "chromosomes"
-	to target "chromosome".  Where there is a match, fitness increments.
-*/
-void GA::setFitness(int arr[popSize][chromSize], const int& n, const int& index)
-{
-	if(index%2 == 0 && arr[n][index] == 0) // Checks if even index contains 0.
-	{
-		fitness++;
-	}
-	if(index%2 != 0 && arr[n][index] == 1) // Checks if odd index contains 1.
-	{
-		fitness++;
-	}
-	arr[n][0] = fitness; 
 }
 
 /**************************fillChromosomeRouletteVector()*************************
@@ -508,7 +508,7 @@ void GA::mutation()
 	{
 		for(int j = 1; j < chromSize; j++)
 		{
-			setFitness(nextGenChromosomes, i, j); // line 172
+			setFitness(nextGenChromosomes, i, j); 
 		}
 		fitness = 0;
 	}

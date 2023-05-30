@@ -106,7 +106,7 @@ private:
 							// initial pop won't be erased and so every recombined pop will be 
 							// stored
 	int* compare; // array to ensure no replicated or co'd chrom's are duplicated.
-	int end;
+	int lastIteration;
 	bool match; // value to check if a chromosome matches the target 1010101010.
 	int targetCounter; // used to count the number of 1010101010's occur.
   const int FITNESS_VALUE_INDEX = 0;
@@ -137,7 +137,7 @@ int main(int argc, char** argv)
 GA::GA()
 {
 	match = 0;
-	end = 0;
+	lastIteration = 0;
 	targetCounter = 0;
 	iteration = 1;
 	targetIteration = 0;
@@ -183,7 +183,7 @@ void GA::geneticAlgorithm()
 
 		if(Pco[pcoIndex]*10 == 7 || Pco[pcoIndex]*10 == 0)
 		{
-			if(end % 2 == 0 && end > 5)
+			if(lastIteration % 2 == 0 && lastIteration > 5)
 			{
 				swap();
 			}
@@ -511,7 +511,7 @@ void GA::mutation()
 */
 void GA::printFitness()
 {
-	end = iteration;
+	lastIteration = iteration;
 	std::cout << "iteration " << iteration << "\t";
 	for(int i = 0; i < popSize; i++)
 	{
@@ -563,9 +563,9 @@ void GA::fillFourGen(const int& generation)
 void GA::printFirstTwoAndLastTwoGenerations()
 {
 	std::cout << std::endl;
-	if(end < 4)
+	if(lastIteration < 4)
 	{
-		for(int generation = 0; generation < (end - 1); generation++)
+		for(int generation = 0; generation < (lastIteration - 1); generation++)
 		{
 			printPopulationsOrderLabel(generation);
 			printFirstTwoAndLastTwoGenerationsDecoration(generation);

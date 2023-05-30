@@ -213,14 +213,14 @@ void GA::fillInitialPop()
 */
 void GA::setPop(int chromosomesArray[popSize][chromSize])
 {
-	int randNum;
+	int zeroOrOne;
 
 	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
 		for(int gene = 1; gene < chromSize; gene++)
 		{
-			randNum = rand() % 2;
-			chromosomesArray[chromosome][gene] = randNum;
+			zeroOrOne = rand() % 2;
+			chromosomesArray[chromosome][gene] = zeroOrOne;
 			setFitness(chromosomesArray, chromosome, gene);
 		}
 		fitness = 0;

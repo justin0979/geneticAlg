@@ -56,7 +56,7 @@ private:
 	// Function to randomly select 1 - Pco chromosomes and store those  in the nextGenChromosomes 
 	// array.
 	// Postcondition:  nextGenChromosomes will contain 1 - Pco replicated chromosomes.
-	void setFitness(int arr[20][11], const int&, const int&);  
+	void setFitness(int arr[20][11], const int&);  
 	// Function to compare each individual chromosome with the target chromosome and increment the 
 	// fitness value of each gene match between the target and analyzed chromosomes.
 	// Postcondition:  Index 0 of population arrays (pop, nextGenChromosomes) will be updated with 
@@ -110,7 +110,6 @@ private:
 	int end;
 	bool match; // value to check if a chromosome matches the target 1010101010.
 	int targetCounter; // used to count the number of 1010101010's occur.
-	int fitness;
   const int FITNESS_VALUE_INDEX = 0;
 	float chromGetsPicked;
 	int iteration; // count number of iterations from 1 to target chromosome.
@@ -143,7 +142,6 @@ GA::GA()
 	targetCounter = 0;
 	iteration = 1;
 	targetIteration = 0;
-	fitness = 0;
 	chromGetsPicked = 0.0;
 	
 	for(int i = 0; i < popSize; i++)
@@ -221,9 +219,9 @@ void GA::setPop(int chromosomesArray[popSize][chromSize])
 		{
 			zeroOrOne = rand() % 2;
 			chromosomesArray[chromosome][gene] = zeroOrOne;
-			setFitness(chromosomesArray, chromosome, gene);
 		}
-		fitness = 0;
+
+		setFitness(chromosomesArray, chromosome);
 	}
 	fillCopyChromosomeList(chromosomesArray, copyChromosomeList);
 }
@@ -232,17 +230,23 @@ void GA::setPop(int chromosomesArray[popSize][chromSize])
 	Function compares value in each index of pop array "chromosomes"
 	to target "chromosome".  Where there is a match => fitness increments.
 */
-void GA::setFitness(int chromosomesArray[popSize][chromSize], const int& chromosome, const int& gene)
+void GA::setFitness(int chromosomesArray[popSize][chromSize], const int& chromosome)
 {
-	if(gene%2 == 0 && chromosomesArray[chromosome][gene] == 0) // Checks if even gene contains 0.
-	{
-		fitness++;
-	}
-	if(gene%2 != 0 && chromosomesArray[chromosome][gene] == 1) // Checks if odd gene contains 1.
-	{
-		fitness++;
-	}
-	chromosomesArray[chromosome][FITNESS_VALUE_INDEX] = fitness; 
+  int fitness = 0;
+
+  for(int gene = 0; gene < chromSize; gene++)
+  {
+
+	  if(gene%2 == 0 && chromosomesArray[chromosome][gene] == 0) // Checks if even gene contains 0.
+	  {
+	  	fitness++;
+	  }
+	  if(gene%2 != 0 && chromosomesArray[chromosome][gene] == 1) // Checks if odd gene contains 1.
+	  {
+	  	fitness++;
+	  }
+	  chromosomesArray[chromosome][FITNESS_VALUE_INDEX] = fitness; 
+  }
 }
 
 /***************************printPopulation()******************************
@@ -393,9 +397,8 @@ void GA::selectAndStoreReplication(const float& Pco)
 		for(int k = 1; k < chromSize; k++) // STORES the replicated chromosomes
 		{
 			nextGenChromosomes[i][k] = copyChromosomeList[chromosomeRoulette[random]][k];
-			setFitness(nextGenChromosomes, i, k);
 		}
-		fitness = 0;
+		setFitness(nextGenChromosomes, i);
 	}
 	delete compare;
 }
@@ -501,11 +504,7 @@ void GA::mutation()
 
 	for(int i = 0; i < popSize; i++) // for loop to set the fitness of recombinant chromosomes.
 	{
-		for(int j = 1; j < chromSize; j++)
-		{
-			setFitness(nextGenChromosomes, i, j); 
-		}
-		fitness = 0;
+		setFitness(nextGenChromosomes, i); 
 	}
 }
 

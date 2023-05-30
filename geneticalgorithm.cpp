@@ -100,8 +100,7 @@ private:
 
 	// VARIABLES
 	int pop[popSize][chromSize];	// index 0 holds fitness value, indices 1 to 10 hold 0's or 
-									// 1's.  Array holds
-									// initial chromosome population throughout duration of program
+									// 1's.  Array holds initial chromosome population throughout duration of program
 	float popPercentage[popSize];	// CAN DELETE.
 	std::vector<int> chromosomeRoulette; // holds number of chromo baseed on its fitness value.
 	int nextGenChromosomes[popSize][chromSize]; // holds the recombinant and replicated chromosomes
@@ -220,7 +219,7 @@ void GA::setInitialPop()
 /***************************setPop()*******************************
 	Function to randomly generate 20 "new chromosomes" with genes containing 0 or 1.
 */
-void GA::setPop(int arr[popSize][chromSize])
+void GA::setPop(int chromosomesArray[popSize][chromSize])
 {
 	int randNum;
 
@@ -229,29 +228,29 @@ void GA::setPop(int arr[popSize][chromSize])
 		for(int gene = 1; gene < chromSize; gene++)
 		{
 			randNum = rand() % 2;
-			arr[chromosome][gene] = randNum;
-			setFitness(arr, chromosome, gene);
+			chromosomesArray[chromosome][gene] = randNum;
+			setFitness(chromosomesArray, chromosome, gene);
 		}
 		fitness = 0;
 	}
-	fillCopyChromosomeList(arr, copyChromosomeList);
+	fillCopyChromosomeList(chromosomesArray, copyChromosomeList);
 }
 
 /***************************setFitness()******************************
 	Function compares value in each index of pop array "chromosomes"
 	to target "chromosome".  Where there is a match => fitness increments.
 */
-void GA::setFitness(int arr[popSize][chromSize], const int& chromosome, const int& gene)
+void GA::setFitness(int chromosomesArray[popSize][chromSize], const int& chromosome, const int& gene)
 {
-	if(gene%2 == 0 && arr[chromosome][gene] == 0) // Checks if even gene contains 0.
+	if(gene%2 == 0 && chromosomesArray[chromosome][gene] == 0) // Checks if even gene contains 0.
 	{
 		fitness++;
 	}
-	if(gene%2 != 0 && arr[chromosome][gene] == 1) // Checks if odd gene contains 1.
+	if(gene%2 != 0 && chromosomesArray[chromosome][gene] == 1) // Checks if odd gene contains 1.
 	{
 		fitness++;
 	}
-	arr[chromosome][0] = fitness; // index 0 of each chromosome contains its fitness value.
+	chromosomesArray[chromosome][0] = fitness; // index 0 of each chromosome contains its fitness value.
 }
 
 /***************************printPopulation()******************************

@@ -639,7 +639,7 @@ void GA::swap()
 	{
 		for(int gene = 0; gene < chromSize; gene++)
 		{
-			temp[chromosome][gene] = fourGen[3][chromosome][gene];
+			temp[chromosome][gene] = fourGen[THIRD_GEN][chromosome][gene];
 			fourGen[THIRD_GEN][chromosome][gene] = fourGen[SECOND_GEN][chromosome][gene];
 			fourGen[SECOND_GEN][chromosome][gene] = temp[chromosome][gene];
 		}

@@ -545,13 +545,13 @@ void GA::printPcoAvg(float* Pco)
 	Function to store the first two generations after initial pop and last two generated 
 	generations.
 */
-void GA::fillFourGen(const int& i)
+void GA::fillFourGen(const int& generation)
 {
-	for(int j = 0; j < popSize; j++)
+	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
-		for(int k = 0; k < chromSize; k++)
+		for(int gene = 0; gene < chromSize; gene++)
 		{
-			fourGen[i][j][k] = nextGenChromosomes[j][k];
+			fourGen[generation][chromosome][gene] = nextGenChromosomes[chromosome][gene];
 		}
 	}
 }

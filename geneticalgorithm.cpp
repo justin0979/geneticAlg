@@ -267,11 +267,11 @@ void GA::printChromosomeLineNumber(int lineNumber)
   std::cout << lineNumber << ".)\t";
 }
 
-void GA::printChromosomeFitnessAndGenes(int *arr) {
-	for(int j = 0; j < chromSize; j++)
+void GA::printChromosomeFitnessAndGenes(int *chromosome) {
+	for(int gene = 0; gene < chromSize; gene++)
 	{
-		std::cout << arr[j] << " ";
-		if(j == 0)
+		std::cout << chromosome[gene] << " ";
+		if(gene == 0)
 		{
 			std::cout << "\t";
 		}

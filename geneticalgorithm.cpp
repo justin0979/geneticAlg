@@ -210,9 +210,72 @@ void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) {
 void GA::setInitialPop() {
 	std::cout << "Initial Population.\n" << std::endl;
 	std::cout << " i\tF(i)\tChromosome data (genes)" << "\n----\t----\t-------------------" << std::endl;
-	setPop(pop); // stores original generated pop and saves it in pop array.
-	printPopulation(pop); // display chromosomes. 
+	setPop(pop); 
+	printPopulation(pop);
 
+}
+
+/***************************setPop()*******************************
+	Function to randomly generate 20 "new chromosomes".
+*/
+void GA::setPop(int arr[popSize][chromSize])
+{
+	int randNum;
+
+	for(int i = 0; i < popSize; i++)
+	{
+		for(int j = 1; j < chromSize; j++)
+		{
+			randNum = rand() % 2;
+			arr[i][j] = randNum;
+			setFitness(arr, i, j); // line 111
+		}
+		fitness = 0;
+	}
+	fillCopyChromosomeList(arr, copyChromosomeList);
+}
+
+/***************************printPopulation()******************************
+	Function to print out a population.
+*/
+void GA::printPopulation(int arr[popSize][chromSize])
+{
+	for(int i = 0; i < popSize; i++)
+	{
+    printChromosomeLineNumber(i + 1);
+		printChromosomeFitnessAndGenes(arr[i]);
+		std::cout << std::endl;
+	}
+  std::cout << std::endl;
+}
+
+void GA::printChromosomeLineNumber(int lineNumber) {
+  std::cout << lineNumber << ".)\t";
+}
+
+void GA::printChromosomeFitnessAndGenes(const int &i, const int &j) {
+  for(int k = 0; k < chromSize; k++)
+  {
+		std::cout << fourGen[i][j][k] << " ";
+		if(k == 0)
+		{
+			std::cout << '\t';	
+		}
+  }
+}
+
+/**************************targetMatch()**********************************8
+	Function to check if a fitness of 10 is found.
+*/
+void GA::targetMatch(int arr[popSize][chromSize])
+{
+	for(int i = 0; i < popSize; i++)
+	{
+		if(arr[i][0] == 10)
+		{
+			match = true;
+		}
+	}
 }
 
 /**************************gaWorkHorse()**************************
@@ -260,40 +323,6 @@ void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const fl
 		}	
 		generationCounter++;
 	}
-}
-
-/***************************setPop()*******************************
-	Function to randomly generate 20 "new chromosomes".
-*/
-void GA::setPop(int arr[popSize][chromSize])
-{
-	int randNum;
-
-	for(int i = 0; i < popSize; i++)
-	{
-		for(int j = 1; j < chromSize; j++)
-		{
-			randNum = rand() % 2;
-			arr[i][j] = randNum;
-			setFitness(arr, i, j); // line 111
-		}
-		fitness = 0;
-	}
-	fillCopyChromosomeList(arr, copyChromosomeList);
-}
-
-/***************************printPopulation()******************************
-	Function to print out a population.
-*/
-void GA::printPopulation(int arr[popSize][chromSize])
-{
-	for(int i = 0; i < popSize; i++)
-	{
-    printChromosomeLineNumber(i + 1);
-		printChromosomeFitnessAndGenes(arr[i]);
-		std::cout << std::endl;
-	}
-  std::cout << std::endl;
 }
 
 /***************************setFitness()******************************
@@ -494,20 +523,6 @@ void GA::printFitness()
 	std::cout << std::endl;
 }
 
-/**************************targetMatch()**********************************8
-	Function to check if a fitness of 10 is found.
-*/
-void GA::targetMatch(int arr[popSize][chromSize])
-{
-	for(int i = 0; i < popSize; i++)
-	{
-		if(arr[i][0] == 10)
-		{
-			match = true;
-		}
-	}
-}
-
 /****************************printPcoAvg()*********************************
 	Function to print out the average number of generations for specified Pco
 */
@@ -612,10 +627,6 @@ void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i) {
 	std::cout << std::endl;
 }
 
-void GA::printChromosomeLineNumber(int lineNumber) {
-  std::cout << lineNumber << ".)\t";
-}
-
 void GA::printChromosomeFitnessAndGenes(int *arr) {
 	for(int j = 0; j < chromSize; j++)
 	{
@@ -625,17 +636,6 @@ void GA::printChromosomeFitnessAndGenes(int *arr) {
 			std::cout << "\t";
 		}
 	}
-}
-
-void GA::printChromosomeFitnessAndGenes(const int &i, const int &j) {
-  for(int k = 0; k < chromSize; k++)
-  {
-		std::cout << fourGen[i][j][k] << " ";
-		if(k == 0)
-		{
-			std::cout << '\t';	
-		}
-  }
 }
 
 /********************************************************swap()*****************************

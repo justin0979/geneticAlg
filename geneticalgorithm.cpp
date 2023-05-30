@@ -14,23 +14,11 @@ class GA
 public:
 	GA();
 	void geneticAlgorithm();
-	// Function to randomly generate a population of 20 chromosomes.  Based on the Pco, a portion
-	// of the population will be replicated into the nextGenChromosomes array with the remainder
-	// of the population being crossed-over and the children stored in the same array.
-	// The function will generate chromosome 1010101010, record the iterations it took, re-run
-	// 19 more times for each Pco and finally calulate the average number of iterations it took
-	// to find the target chromosome.  The function is run 100 times (20 runs per Pco).
-	// Postcondition:  Average number of iteraions for each Pco is calculated.
 	void printPopulation(int arr[20][11]);  
-	// Function to printout the specified population.
-	// Postcondition:  Prints population to screen.
-	int getTargetCounter() {return targetCounter;}; 
-	// Function to return targetCounter, which ensures that 100 trials were run (20 runs per pco).
-	// Postcondition:  Returns targetCounter.
-	int getIteration(){return targetIteration;};
 	// Function to return targetIteration, which records the number of generations it took to find 
 	// the target chromosome.
 	// Postcondition:  Returns targetIteration.
+	int getIteration(){return targetIteration;};
 	
 	// VARIABLES
 	static const int popSize = 20;
@@ -125,7 +113,6 @@ private:
 	bool match; // value to check if a chromosome matches the target 1010101010.
 	int targetCounter; // used to count the number of 1010101010's occur.
 	int fitness;
-//	int totFitness; // didn't use.
 	float chromGetsPicked;
 	int iteration; // count number of iterations from 1 to target chromosome.
 	int targetIteration; // records number of iterations it took to get target. 

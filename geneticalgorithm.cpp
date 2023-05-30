@@ -111,6 +111,7 @@ private:
 	bool match; // value to check if a chromosome matches the target 1010101010.
 	int targetCounter; // used to count the number of 1010101010's occur.
 	int fitness;
+  const int FITNESS_VALUE_INDEX = 0;
 	float chromGetsPicked;
 	int iteration; // count number of iterations from 1 to target chromosome.
 	int targetIteration; // records number of iterations it took to get target. 
@@ -249,7 +250,7 @@ void GA::setFitness(int chromosomesArray[popSize][chromSize], const int& chromos
 	{
 		fitness++;
 	}
-	chromosomesArray[chromosome][0] = fitness; // index 0 of each chromosome contains its fitness value.
+	chromosomesArray[chromosome][FITNESS_VALUE_INDEX] = fitness; 
 }
 
 /***************************printPopulation()******************************
@@ -286,11 +287,11 @@ void GA::printChromosomeFitnessAndGenes(const int &i, const int &j)
 /**************************targetMatch()**********************************8
 	Function to check if a fitness of 10 is found.
 */
-void GA::targetMatch(int arr[popSize][chromSize])
+void GA::targetMatch(int chromosomesArray[popSize][chromSize])
 {
-	for(int i = 0; i < popSize; i++)
+	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
-		if(arr[i][0] == 10)
+		if(chromosomesArray[chromosome][FITNESS_VALUE_INDEX] == 10)
 		{
 			match = true;
 		}

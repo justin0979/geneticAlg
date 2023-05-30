@@ -95,7 +95,6 @@ private:
   void printOnlyPcoSeventyOrZeroPercentLabel(float pco);
   void printChromosomeLineNumber(int line);
   void printChromosomeFitnessAndGenes(int *arr);
-  void printChromosomeFitnessAndGenes(const int &i, const int &j);
 
 	// VARIABLES
 	int pop[popSize][chromSize];	// index 0 holds fitness value, indices 1 to 10 hold 0's or 
@@ -268,16 +267,15 @@ void GA::printChromosomeLineNumber(int lineNumber)
   std::cout << lineNumber << ".)\t";
 }
 
-void GA::printChromosomeFitnessAndGenes(const int &i, const int &j) 
-{
-  for(int k = 0; k < chromSize; k++)
-  {
-		std::cout << fourGen[i][j][k] << " ";
-		if(k == 0)
+void GA::printChromosomeFitnessAndGenes(int *arr) {
+	for(int j = 0; j < chromSize; j++)
+	{
+		std::cout << arr[j] << " ";
+		if(j == 0)
 		{
-			std::cout << '\t';	
+			std::cout << "\t";
 		}
-  }
+	}
 }
 
 void GA::chromosomeFitnessTargetMatch(int chromosomesArray[popSize][chromSize])
@@ -626,17 +624,6 @@ void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i)
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
-}
-
-void GA::printChromosomeFitnessAndGenes(int *arr) {
-	for(int j = 0; j < chromSize; j++)
-	{
-		std::cout << arr[j] << " ";
-		if(j == 0)
-		{
-			std::cout << "\t";
-		}
-	}
 }
 
 /********************************************************swap()*****************************

@@ -565,18 +565,18 @@ void GA::printFirstTwoAndLastTwoGenerations()
 	std::cout << std::endl;
 	if(end < 4)
 	{
-		for(int i = 0; i < (end - 1); i++)
+		for(int generation = 0; generation < (end - 1); generation++)
 		{
-			printPopulationsOrderLabel(i);
-			printFirstTwoAndLastTwoGenerationsDecoration(i);
+			printPopulationsOrderLabel(generation);
+			printFirstTwoAndLastTwoGenerationsDecoration(generation);
 		}
 	}	
 	else
 	{
-		for(int i = 0; i < 4; i++)
+		for(int generation = 0; generation < 4; generation++)
 		{
-			printPopulationsOrderLabel(i);
-			printFirstTwoAndLastTwoGenerationsDecoration(i);
+			printPopulationsOrderLabel(generation);
+			printFirstTwoAndLastTwoGenerationsDecoration(generation);
 		}
 	}
 }

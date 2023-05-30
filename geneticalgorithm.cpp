@@ -197,7 +197,8 @@ void GA::geneticAlgorithm()
 	printPcoAvg(Pco);
 }
 
-void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) {
+void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) 
+{
   if(pco*10 == 7 || pco*10 == 0) {
 			std::cout << "\nPco = " << pco << "\t" <<  "F(i) of 20 chromosomes"<< std::endl;
   }
@@ -207,7 +208,8 @@ void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) {
 /**************************setInitialPop()*************************
 	Function to randomly select each "gene" in each "chromosome in the population.
 */
-void GA::setInitialPop() {
+void GA::setInitialPop() 
+{
 	std::cout << "Initial Population.\n" << std::endl;
 	std::cout << " i\tF(i)\tChromosome data (genes)" << "\n----\t----\t-------------------" << std::endl;
 	setPop(pop); 
@@ -249,11 +251,13 @@ void GA::printPopulation(int arr[popSize][chromSize])
   std::cout << std::endl;
 }
 
-void GA::printChromosomeLineNumber(int lineNumber) {
+void GA::printChromosomeLineNumber(int lineNumber)
+{
   std::cout << lineNumber << ".)\t";
 }
 
-void GA::printChromosomeFitnessAndGenes(const int &i, const int &j) {
+void GA::printChromosomeFitnessAndGenes(const int &i, const int &j) 
+{
   for(int k = 0; k < chromSize; k++)
   {
 		std::cout << fourGen[i][j][k] << " ";
@@ -283,7 +287,8 @@ void GA::targetMatch(int arr[popSize][chromSize])
 
   TODO: check validity of interationOf20Runs name
 */
-void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const float pcoValue) {
+void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const float pcoValue) 
+{
 	int generationCounter = 0; 
 
 	while(!match) 
@@ -348,7 +353,6 @@ void GA::setFitness(int arr[popSize][chromSize], const int& n, const int& index)
 	index holding the chromosome will be put into the vector.  
 */
 void GA::fillChromosomeRouletteVector()
-
 {
 	for(int i = 0; i < popSize; i++)
 	{
@@ -459,6 +463,7 @@ void GA::recombination(const float &Pco)
 	fillCopyChromosomeList(nextGenChromosomes, copyChromosomeList);
 	delete compare;
 }
+
 /*********************crossOver()***********************************************************
 	Function to conduct the actual crossover between two selected chromosomes.
 */
@@ -587,7 +592,8 @@ void GA::printFirstTwoAndLastTwoGenerations()
 /**********************************************printPopulationsOrderLabel()*****************************
 	Fuction printouts out the order of 2nd, 3rd and next to last and last pop listing.
 */
-void GA::printPopulationsOrderLabel(const int& i) {
+void GA::printPopulationsOrderLabel(const int& i) 
+{
 		
 	if(i < 2)
 	{
@@ -616,7 +622,8 @@ void GA::printPopulationsOrderLabel(const int& i) {
 /**********************************************printFirstTwoAndLastTwoGenerationsDecoration()*****************************
 	Function adds ".)" + data to printout.
 */
-void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i) {
+void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& i) 
+{
 	for(int j = 0; j < popSize; j++)
 	{
     printChromosomeLineNumber(j + 1);

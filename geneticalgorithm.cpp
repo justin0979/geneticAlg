@@ -353,15 +353,15 @@ void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const fl
 */
 void GA::fillChromosomeRouletteVector()
 {
-	for(int i = 0; i < popSize; i++)
+	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
-		for(int j = 0; j < copyChromosomeList[i][FITNESS_VALUE_INDEX]; j++)
+		for(int vectorEntryTimes = 0; vectorEntryTimes < copyChromosomeList[chromosome][FITNESS_VALUE_INDEX]; vectorEntryTimes++)
 		{
-			chromosomeRoulette.push_back(i);
+			chromosomeRoulette.push_back(chromosome);
 		}
-		if(copyChromosomeList[i][FITNESS_VALUE_INDEX] == 0) 
+		if(copyChromosomeList[chromosome][FITNESS_VALUE_INDEX] == 0) 
 		{
-			chromosomeRoulette.push_back(i); 
+			chromosomeRoulette.push_back(chromosome); 
 		}
 	}
 }

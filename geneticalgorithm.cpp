@@ -631,14 +631,17 @@ void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& generation)
 */
 void GA::swap()
 {
+  const int THIRD_GEN = 3;
+  const int SECOND_GEN = 2;
 	int temp[popSize][chromSize];
-	for(int i = 0; i < popSize; i++)
+
+	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
-		for(int j = 0; j < chromSize; j++)
+		for(int gene = 0; gene < chromSize; gene++)
 		{
-			temp[i][j] = fourGen[3][i][j];
-			fourGen[3][i][j] = fourGen[2][i][j];
-			fourGen[2][i][j] = temp[i][j];
+			temp[chromosome][gene] = fourGen[3][chromosome][gene];
+			fourGen[THIRD_GEN][chromosome][gene] = fourGen[SECOND_GEN][chromosome][gene];
+			fourGen[SECOND_GEN][chromosome][gene] = temp[chromosome][gene];
 		}
 	}
 }

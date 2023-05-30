@@ -347,22 +347,21 @@ void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const fl
 }
 
 /**************************fillChromosomeRouletteVector()*************************
-	Function to create a "roulette wheel" based on the fitness value of "chromosome" specified by
-	pop[i][0].  The fitness value stored in pop[i][0] will determine the number of times that the 
-	index holding the chromosome will be put into the vector.  
+	Function to create a "roulette wheel" based on the fitness value of "chromosome".  The fitness 
+  value stored in pop[i][0] will determine the number of times that the chromosome will be put 
+  into the vector. Chromosomes with fitness value of 0 will be put into the vector one time.
 */
 void GA::fillChromosomeRouletteVector()
 {
 	for(int i = 0; i < popSize; i++)
 	{
-		for(int j = 0; j < copyChromosomeList[i][0]; j++)
+		for(int j = 0; j < copyChromosomeList[i][FITNESS_VALUE_INDEX]; j++)
 		{
 			chromosomeRoulette.push_back(i);
 		}
-		if(copyChromosomeList[i][0] == 0) // if fitness is 0, then chromosome will have only one 
-										  // entry in Roulette.
+		if(copyChromosomeList[i][FITNESS_VALUE_INDEX] == 0) 
 		{
-			chromosomeRoulette.push_back(i);
+			chromosomeRoulette.push_back(i); 
 		}
 	}
 }

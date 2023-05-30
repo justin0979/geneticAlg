@@ -160,7 +160,7 @@ GA::GA()
 */
 void GA::geneticAlgorithm()
 {
-  const int numOfPcos = 5;
+  const int numOfPcos {5};
 	float Pco[numOfPcos] = {0.7, 0.3, 0.5, 0.9, 0.0};
 
 	fillInitialPop();
@@ -210,7 +210,7 @@ void GA::fillInitialPop()
 */
 void GA::setPop(int chromosomesArray[popSize][chromSize])
 {
-	int zeroOrOne;
+	int zeroOrOne {0};
 
 	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
@@ -231,7 +231,7 @@ void GA::setPop(int chromosomesArray[popSize][chromSize])
 */
 void GA::setFitness(int chromosomesArray[popSize][chromSize], const int& chromosome)
 {
-  int fitness = 0;
+  int fitness {0};
 
   for(int gene = 0; gene < chromSize; gene++)
   {
@@ -372,7 +372,7 @@ void GA::fillChromosomeRouletteVector()
 void GA::selectAndStoreReplication(const float& Pco)
 {
 	int replicationNum = popSize * (1 - Pco);
-	int random = 0;
+	int random {0};
 	compare = new int[replicationNum]; // will store the generated random numbers to prevent 
 									   // replicate duplications.
 					                   // its sole urpose is for duplicate prevention.
@@ -421,9 +421,9 @@ void GA::fillCopyChromosomeList(int original[popSize][chromSize], int copy[popSi
 */
 void GA::recombination(const float &Pco)
 {
-	int randomPosition = 0;
-	int pairs = 0;
-	int counter = 0;
+	int randomPosition {0};
+	int pairs {0};
+	int counter {0};
 	int coNum = Pco * popSize; // holds calculated number of total pop based on Pco.
 	int temp = popSize - coNum; // holds index value in nextGenChromosomes, so new co chrom's will 
 								// be after replicants. 
@@ -465,7 +465,7 @@ void GA::recombination(const float &Pco)
 */
 void GA::crossOver(const int& num)
 {
-	int index = 0;
+	int index {0};
 	for(int i = (popSize - num); i < popSize; i+=2) // increment by 2 b/c two parents produce two 
 													// children
 	{
@@ -525,8 +525,8 @@ void GA::printFitness()
 */
 void GA::printPcoAvg(float* Pco)
 {
-	int avg = 0;
-	int totalIterations = 0;
+	int avg {0};
+	int totalIterations {0};
 
 	for(int pco = 0; pco < 5; pco++)
 	{
@@ -631,8 +631,8 @@ void GA::printFirstTwoAndLastTwoGenerationsDecoration(const int& generation)
 */
 void GA::swap()
 {
-  const int THIRD_GEN = 3;
-  const int SECOND_GEN = 2;
+  const int THIRD_GEN {3};
+  const int SECOND_GEN {2};
 	int temp[popSize][chromSize];
 
 	for(int chromosome = 0; chromosome < popSize; chromosome++)

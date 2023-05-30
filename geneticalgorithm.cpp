@@ -86,7 +86,7 @@ private:
 	// Postconditoin:  One chromosome with one "new" gene.
 	void printFitness();
 	// Function to output to screen the fitness values of every chromosome.
-	void targetMatch(int arr[20][11]); 
+	void chromosomeFitnessTargetMatch(int arr[20][11]); 
 	// Function to compare a chromosome population to the target chromosome.
 	// Precondtion:  match = 0;
 	// Postcondition:  if match found, return 1, else 0.
@@ -167,7 +167,7 @@ void GA::geneticAlgorithm()
 	float Pco[numOfPcos] = {0.7, 0.3, 0.5, 0.9, 0.0};
 
 	fillInitialPop();
-	targetMatch(pop);
+	chromosomeFitnessTargetMatch(pop);
 
 	for(int pcoIndex = 0; pcoIndex < numOfPcos; pcoIndex++)
 	{
@@ -276,10 +276,7 @@ void GA::printChromosomeFitnessAndGenes(const int &i, const int &j)
   }
 }
 
-/**************************targetMatch()**********************************8
-	Function to check if a fitness of 10 is found.
-*/
-void GA::targetMatch(int chromosomesArray[popSize][chromSize])
+void GA::chromosomeFitnessTargetMatch(int chromosomesArray[popSize][chromSize])
 {
 	for(int chromosome = 0; chromosome < popSize; chromosome++)
 	{
@@ -315,7 +312,7 @@ void GA::gaWorkHorse(const int& pcoIndex, const int& iterationOf20Runs, const fl
 		selectAndStoreReplication(pcoValue);
 
 		recombination(pcoValue); // stores the recombinant chromosomes.
-		targetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
+		chromosomeFitnessTargetMatch(nextGenChromosomes); // Checks if the target chromosome is generated.
 		chromosomeRoulette.clear(); // empties vector for next recombinant iteration, so 
 									// new data is NOT added to old.
 		if(iterationOf20Runs == 0) // condition verifies stored data and printed fitness

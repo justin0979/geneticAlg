@@ -584,12 +584,12 @@ void GA::printFirstTwoAndLastTwoGenerations()
 /**********************************************printPopulationsOrderLabel()*****************************
 	Fuction printouts out the order of 2nd, 3rd and next to last and last pop listing.
 */
-void GA::printPopulationsOrderLabel(const int& i) 
+void GA::printPopulationsOrderLabel(const int& generation) 
 {
 		
-	if(i < 2)
+	if(generation < 2)
 	{
-		if(i == 0)
+		if(generation == 0)
 		{
 			std::cout << "The first generation after initial population:" << std::endl;
 		}
@@ -600,7 +600,7 @@ void GA::printPopulationsOrderLabel(const int& i)
 	}
 	else
 	{
-		if(i == 2)
+		if(generation == 2)
 		{
 			std::cout << "The second to last generation:" << std::endl;
 		}

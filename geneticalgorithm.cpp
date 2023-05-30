@@ -196,14 +196,6 @@ void GA::geneticAlgorithm()
 	printPcoAvg(Pco);
 }
 
-void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) 
-{
-  if(pco*10 == 7 || pco*10 == 0) {
-			std::cout << "\nPco = " << pco << "\t" <<  "F(i) of 20 chromosomes"<< std::endl;
-  }
-  return;
-}
-
 /**************************fillInitialPop()*************************
 	Function to randomly select each "gene" in each "chromosome in the population.
 */
@@ -296,6 +288,14 @@ void GA::targetMatch(int chromosomesArray[popSize][chromSize])
 			match = true;
 		}
 	}
+}
+
+void GA::printOnlyPcoSeventyOrZeroPercentLabel(float pco) 
+{
+  if(pco*10 == 7 || pco*10 == 0) {
+			std::cout << "\nPco = " << pco << "\t" <<  "F(i) of 20 chromosomes"<< std::endl;
+  }
+  return;
 }
 
 /**************************gaWorkHorse()**************************

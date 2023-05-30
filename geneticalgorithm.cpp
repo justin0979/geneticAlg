@@ -523,20 +523,20 @@ void GA::printFitness()
 /****************************printPcoAvg()*********************************
 	Function to print out the average number of generations for specified Pco
 */
-
 void GA::printPcoAvg(float* Pco)
 {
 	int avg = 0;
 	int totalIterations = 0;
-	for(int i = 0; i < 5; i++)
+
+	for(int pco = 0; pco < 5; pco++)
 	{
 		for(int j = 0; j < 20; j++)
 		{
-			totalIterations += storeIteration[i][j];
+			totalIterations += storeIteration[pco][j];
 		}
 		avg = totalIterations/20;
 
-		std::cout << "Average number of generations for Pco " << Pco[i] 
+		std::cout << "Average number of generations for Pco " << Pco[pco] 
 				  << " is " << avg << "." << std::endl;
 	}
 }

@@ -27,7 +27,7 @@ docker run ga
 ## Execute if GCC installed
 
 ```sh
-gcc -o geneticAlgo geneticalgorithm.cpp -lstdc++
+g++ -o geneticAlgo geneticalgorithm.cpp -lstdc++
 ./geneticAlgo
 ```
 

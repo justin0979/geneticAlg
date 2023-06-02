@@ -32,17 +32,18 @@ g++ -o geneticAlgo geneticalgorithm.cpp -lstdc++
 ```
 
 <details>
-    <summary><strong>Issues</strong></summary>
+    <summary><strong>Issues Being Worked On</strong></summary>
 
 #### Design
 
-This program lacks quality architecture. The geneticAlgorithm
+This program lacks quality architecture; however, this is being worked on. The geneticAlgorithm
 function does take on the qualities of the Template design pattern in how each
 function is ordered in such a way as to provide accurate data outputs. This program
 was designed and constructed prior to me having taken Software Engineering or Software
 Design courses. After refactoring one year later, I see odd arrangements with
 private and public categorizations; however, the arrangement worked with the
-sloppy design style.
+sloppy design style. I am also attempting to implement suggestions from "Clean Code" as well. 
+So far, I've given variables better names.
 
 #### BUG
 
@@ -60,7 +61,7 @@ generations after the optimal solution generation with null input'.
 </details>
 
 <details>
-    <summary><strong>Improvements</strong></summary>
+    <summary><strong>Improvements To Be Made</strong></summary>
 
 Utilize separate files for better code comprehension. Implement
 helper classes for better code organization. Removal of unused functions for

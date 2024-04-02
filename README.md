@@ -16,7 +16,7 @@ followed by the 2nd and 3rd iterations and then the second to last and last iter
 Pco's 0.7 and 0.0.
 
 <details>
-    <summary><strong>Execute Program with Command Line</strong></summary>
+    <summary><strong>Options to Execute Program</strong></summary>
 
 ## Execute with Docker
 

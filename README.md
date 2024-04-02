@@ -15,11 +15,15 @@ Program will display the initial generated population and all iterations up to t
 followed by the 2nd and 3rd iterations and then the second to last and last iterations for
 Pco's 0.7 and 0.0.
 
+<details>
+    <summary><strong>Execute Program with Command Line</strong></summary>
+
 ## Execute with Docker
 
 From linux command line: <br />
 
 ```sh
+cd genetic_algorithm_cpp
 docker build -t ga .
 docker run ga
 ```
@@ -27,9 +31,12 @@ docker run ga
 ## Execute if GCC installed
 
 ```sh
-g++ -o geneticAlgo geneticalgorithm.cpp -lstdc++
+cd genetic_algorithm_cpp
+g++ -o geneticAlgo src/main.cpp
 ./geneticAlgo
 ```
+
+</details>
 
 <details>
     <summary><strong>Issues Being Worked On</strong></summary>
@@ -42,7 +49,7 @@ function is ordered in such a way as to provide accurate data outputs. This prog
 was designed and constructed prior to me having taken Software Engineering or Software
 Design courses. After refactoring one year later, I see odd arrangements with
 private and public categorizations; however, the arrangement worked with the
-sloppy design style. I am also attempting to implement suggestions from "Clean Code" as well. 
+sloppy design style. I am also attempting to implement suggestions from "Clean Code" as well.
 So far, I've given variables better names.
 
 #### BUG

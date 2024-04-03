@@ -43,9 +43,9 @@ g++ -o geneticAlgo src/main.cpp
 
 #### Design
 
-This program lacks quality architecture; however, this is being worked on. The geneticAlgorithm
-function does take on the qualities of the Template design pattern in how each
-function is ordered in such a way as to provide accurate data outputs. This program
+This program lacks quality architecture; however, this is being worked on. The code coupling is very intense
+and will need to be refactored. The geneticAlgorithm function does take on the qualities of the Template
+design pattern in how each function is ordered in such a way as to provide accurate data outputs. This program
 was designed and constructed prior to me having taken Software Engineering or Software
 Design courses. After refactoring one year later, I see odd arrangements with
 private and public categorizations; however, the arrangement worked with the
